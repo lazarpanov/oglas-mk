@@ -15,7 +15,6 @@
 			<svelte:fragment slot="trail"><LightSwitch /></svelte:fragment>
 		</AppBar></svelte:fragment
 	>
-	<svelte:fragment slot="sidebarLeft">Sidebar Left</svelte:fragment>
 	<!-- (sidebarRight) -->
 	<svelte:fragment slot="pageHeader">Page Header</svelte:fragment>
 	<!-- Router Slot -->
