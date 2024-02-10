@@ -20,7 +20,7 @@ const config = {
 	},
 	plugins: [
 		skeleton({
-			themes: { preset: [ "skeleton" ] }
+			themes: { preset: [ "skeleton", "crimson" ] }
 		})
 	]
 } satisfies Config;
