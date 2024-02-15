@@ -4,5 +4,7 @@ export interface Item {
     description: string;
     createdAt: string;
     seller: string;
+    //Izbrisi posle koga ke se stavi database
+    id:string;
 }
 

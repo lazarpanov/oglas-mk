@@ -1,14 +1,24 @@
 <script lang="ts">
-	import Card from '../components/Card.svelte';
+	import { replaceState } from '$app/navigation';
+import Card from '../components/Card.svelte';
 	import type { Item } from '../types';
-
+	import { Link } from 'svelte-routing';
 	const item: Item = {
 		title: 'Bobr',
 		price: 300,
 		description: 'Wake up wake up its the first of the month',
 		seller: 'Bobr Kuki',
 		createdAt: '20-12-2013',
-        initials: 'SM'
+        //brisi posle
+        id:"1"
+	};
+    const item2: Item = {
+		title: 'Bobr',
+		price: 300,
+		description: 'Wake up wake up its the first of the month',
+		seller: 'Bobr Kuki',
+		createdAt: '20-12-2013',
+        id:"2"
 	};
     const item3:Item={
 		title: 'Bobr',
@@ -16,16 +26,16 @@
 		description: 'WakeWakeWakeWakeWakeWakeWakeWakeWakeWakeWakeWakeWakeWakeWakeWakeWakeWakeWakeWakeWakeWakeWakeWakeWakeWakeWakeWakeWakeWakeWakeWakeWakeWakeWake up wake up its the first of the month',
 		seller: 'Bobr Kuki',
 		createdAt: '20-12-2013',
-        initials: 'SM'
+        id:"3"
     };
 
-	const items = [item3,item, item, item, item, item];
+	const items = [item,item2, item3];
 </script>
 
-<div class="flex h-full w-full items-start justify-start gap-2 flex-wrap px-2">
-	
+<div class="flex h-full w-full items-start justify-start gap-4 flex-wrap px-10">
+
     {#each items as item}
-		<Card {item} />
+    <Card {item}/>
     {/each}
-	
+
 </div>
