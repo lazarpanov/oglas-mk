@@ -1,17 +1,23 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
   
-	import { createUserWithEmailAndPassword } from 'firebase/auth';
+	import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 	import { firebaseAuth } from '$lib/firebase';
   
 	let email: string;
 	let password: string;
+	let displayName: string;
   
 	let success: boolean | undefined = undefined;
 	
 	const register = () => {
 	  createUserWithEmailAndPassword(firebaseAuth, email, password)
-		.then(() => {
+		.then(async (result) => {
+			const user = result.user;
+			const response = await updateProfile(user, {displayName})
+
+			console.log(response)
+
 		  goto('/auth/log-in');
 		})
 		.catch((error) => {
@@ -47,7 +53,7 @@
 			<label class="label">
 				<span>Username</span>
 				<!-- (input here) -->
-				<input class="input px-2 py-1" title="username" type="text" placeholder="Username" />
+				<input class="input px-2 py-1" title="username" type="text" placeholder="Username" bind:value={displayName} />
 			</label>
 			<label class="label">
 				<span>Password</span>

@@ -23,10 +23,10 @@ import {
   
   if (!getApps().length) {
     firebaseApp = initializeApp(firebaseConfig);
-    console.log(firebaseApp)
   }
   
   // Auth
   const firebaseAuth = getAuth(firebaseApp);
   
   export { firebaseApp, firebaseAuth };
+  

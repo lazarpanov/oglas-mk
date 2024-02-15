@@ -2,46 +2,9 @@
 	import '../app.pcss';
 	import { AppShell, AppBar, LightSwitch } from '@skeletonlabs/skeleton';
 	import { page } from '$app/stores';
-	const blackList = ['/auth'];
-
 
 	$: showFragments = $page.url.pathname === '/';
-
-	import { onMount } from 'svelte';
-	import { session } from '$lib/session';
-	import { goto } from '$app/navigation';
-	import { signOut } from 'firebase/auth';
-	import { firebaseAuth } from '$lib/firebase';
-
-	import type { LayoutData } from './$types';
-	export let data: LayoutData;
-
-	let loading: boolean = true;
-	let loggedIn: boolean = false;
-
-	session.subscribe((cur: any) => {
-		loading = cur?.loading;
-		loggedIn = cur?.loggedIn;
-	});
-
-	onMount(async () => {
-		// const user: any = await data.getAuthUser();
-
-		const loggedIn = !!user && user?.emailVerified;
-		session.update((cur: any) => {
-			loading = false;
-			return {
-				...cur,
-				user,
-				loggedIn,
-				loading: false
-			};
-		});
-
-		if (loggedIn) {
-			goto('/');
-		}
-	});
+	console.log($page.data.user)
 </script>
 
 <AppShell>
@@ -60,7 +23,17 @@
 				></svelte:fragment
 			>
 			<p class="text-primary-600 text-2xl font-bold">Oglasium</p>
-			<svelte:fragment slot="trail"><LightSwitch /></svelte:fragment>
+			<svelte:fragment slot="trail">
+				<div>
+					{#if $page.data.user}
+						<div>{$page.data.user.displayName}</div>
+						<form method="post" action="?/logout">
+							<button  type="submit" class="btn variant-filled-secondary">Log out!</button>
+						</form>
+					{/if}
+					<LightSwitch />
+				</div>
+			</svelte:fragment>
 		</AppBar>
 	</svelte:fragment>
 	<svelte:fragment slot="pageHeader">
