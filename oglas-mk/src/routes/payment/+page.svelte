@@ -10,9 +10,9 @@
         </div>
 		<div class="flex flex-col justify-center gap-4">
 			<label class="label" style="padding-top: 10px;">
-				<span>Person Name</span>
+				<span>Card Holder</span>
 				<!-- (input here) -->
-				<input class="input px-2 py-1" title="personName" type="text" placeholder="Barry Allen" />
+				<input class="input px-2 py-1" title="cardHolder" type="text" placeholder="Barry Allen" />
 			</label>
 			<label class="label">
 				<span>Card Number</span>
@@ -23,7 +23,7 @@
 				<label class="label">
 					<span>Expiry</span>
 					<!-- (input here) -->
-					<input class="input px-2 py-1" title="Expiry" type="text" placeholder="MM/YYYY" />
+					<input class="input px-2 py-1" title="expiry" type="text" placeholder="MM/YYYY" />
 				</label>
 				<label class="label">
 					<span>CVV/CVC</span>
