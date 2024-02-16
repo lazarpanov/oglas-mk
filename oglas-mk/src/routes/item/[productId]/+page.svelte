@@ -1,6 +1,7 @@
 <script>
 	let product = {
 		id: 1,
+		seller: 'Bobr Kuki',
 		name: 'Example Product',
 		price: 29.99,
 		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
@@ -8,11 +9,11 @@
 		selectedImage: 0
 	};
 	const bobr = 'https://img-9gag-fun.9cache.com/photo/aGEQMDZ_460s.jpg';
-	function addToCart() {
+	function Buyitem() {
 		// Implement add to cart functionality
 		console.log('Product added to cart:', product);
 	}
-
+	import { Avatar } from '@skeletonlabs/skeleton';
 	// function selectImage(index: String) {
 	// 	product.selectedImage = index;
 	// }
@@ -24,10 +25,20 @@
 	</div>
 
 	<div class="product-details">
-		<h1>{product.name}</h1>
-		<p class="price">${product.price.toFixed(2)}</p>
-		<p>{product.description}</p>
-		<button on:click={addToCart}>Add to Cart</button>
+		<div class="flex items-center justify-start space-x-4 p-1">
+			<Avatar
+				initials={product.seller.charAt(0) +
+					product.seller.charAt(product.seller.lastIndexOf(' ') + 1)}
+				width="w-8"
+			/>
+			<h1>{product.seller}</h1>
+		</div>
+		<div>
+			<h2>{product.name}</h2>
+			<p class="price">${product.price.toFixed(2)}</p>
+			<p>{product.description}</p>
+			<button on:click={Buyitem}>BUY</button>
+		</div>
 	</div>
 </div>
 
