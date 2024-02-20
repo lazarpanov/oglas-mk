@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Avatar } from '@skeletonlabs/skeleton';
 	import type { Item } from '../types';
-	import { Link } from 'svelte-routing';
+	//import { Link } from 'svelte-routing';
 	const bobr = 'https://img-9gag-fun.9cache.com/photo/aGEQMDZ_460s.jpg';
 
 	export let item: Item = {
