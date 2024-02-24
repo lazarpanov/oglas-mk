@@ -1,16 +1,33 @@
 <script lang="ts">
-	import { FileDropzone } from '@skeletonlabs/skeleton';
+	import { enhance } from "$app/forms";
+  	import Dropzone from "svelte-file-dropzone";
+	  let files = {
+    accepted: [],
+    rejected: []
+  };
+
+  function handleFilesSelect(e) {
+    const { acceptedFiles, fileRejections } = e.detail;
+    files.accepted = [...files.accepted, ...acceptedFiles];
+    files.rejected = [...files.rejected, ...fileRejections];
+  }
+
+  
 </script>
 
 <!-- svelte-ignore a11y-label-has-associated-control -->
 <div class="flex h-full w-full items-start justify-center px-4 pt-12">
-	<form class="flex w-[400px] flex-col space-y-4 rounded-xl p-8 shadow-2xl">
+	<form class="flex w-[400px] flex-col space-y-4 rounded-xl p-8 shadow-2xl" method="post" use:enhance={({ formData }) => {
+        files.accepted.forEach((file) => {
+            formData.append('file', file);
+        });
+    }}>
 		<h3 class="h3 font-bold">Create a new item</h3>
 		<div class="flex flex-col justify-center gap-4">
 			<label class="label" style="padding-top: 10px;">
 				<span>Title</span>
 				<!-- (input here) -->
-				<input class="input px-2 py-1" title="title" type="text" placeholder="Title" />
+				<input class="input px-2 py-1" name="title" type="text" placeholder="Title" />
 			</label>
 			<label class="label">
 				<span>Price</span>
@@ -27,7 +44,7 @@
 							/></svg
 						>
 					</div>
-					<input type="text" placeholder="Price" class="input px-2 py-1" />
+					<input type="text" placeholder="Price" class="input px-2 py-1" name="price" />
 					<select>
 						<option>MKD</option>
 						<option>EUR</option>
@@ -38,11 +55,11 @@
 			<label class="label">
 				<span>Description</span>
 				<!-- (input here) -->
-				<textarea class="textarea px-2 py-1" rows="4" placeholder="Description" />
+				<textarea class="textarea px-2 py-1" rows="4" placeholder="Description" name="description" />
 			</label>
 
-			<FileDropzone name="files" class="mb-3 mt-3" />
-			<button type="button" class="btn variant-filled">Register item</button>
+			<Dropzone on:drop={handleFilesSelect} />
+			<button type="submit" class="btn variant-filled">Register item</button>
 		</div>
 	</form>
 </div>
