@@ -4,7 +4,9 @@
 	import { page } from '$app/stores';
 
 	$: showFragments = $page.url.pathname === '/';
-	console.log($page.data.user)
+	// console.log($page.data.user)
+
+	
 </script>
 
 <AppShell>
@@ -24,14 +26,15 @@
 			>
 			<p class="text-primary-600 text-2xl font-bold">Oglasium</p>
 			<svelte:fragment slot="trail">
-				<div>
+				<div class="flex items-center gap-4">
 					{#if $page.data.user}
-						<div>{$page.data.user.displayName}</div>
-						<form method="post" action="?/logout">
+						<div class="text-primary-600 font-bold">{$page.data.user.displayName}</div>
+						<form method="post" action="/auth/logout">
 							<button  type="submit" class="btn variant-filled-secondary">Log out!</button>
 						</form>
 					{/if}
 					<LightSwitch />
+
 				</div>
 			</svelte:fragment>
 		</AppBar>

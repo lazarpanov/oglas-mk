@@ -6,8 +6,8 @@
 
 	export let formData;
   
-	let email: string = 'lazarpanov2002@gmail.com';
-	let password: string = 'laze2002';
+	let email: string = 'testtest@testtest.com';
+	let password: string = 'testing123';
   
 	let success: boolean | undefined = undefined;
 	
