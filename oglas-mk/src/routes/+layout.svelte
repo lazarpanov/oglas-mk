@@ -30,7 +30,7 @@
 					{#if $page.data.user}
 						<div class="text-primary-600 font-bold">{$page.data.user.displayName}</div>
 						<form method="post" action="/auth/logout">
-							<button  type="submit" class="btn variant-filled-secondary">Log out!</button>
+							<button  type="submit" class="btn variant-filled-primary">Log out!</button>
 						</form>
 					{/if}
 					<LightSwitch />

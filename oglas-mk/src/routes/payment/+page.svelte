@@ -6,7 +6,7 @@
 	<form class="flex w-[400px] flex-col space-y-4 rounded-xl p-8 shadow-2xl">
 		<div class="flex justify-center gap-4 items-center">
             <h3 class="h3 font-bold">Payment Details</h3> 
-            <svg xmlns="http://www.w3.org/2000/svg" class="fill-white" height="24" viewBox="0 -960 960 960" width="24"><path d="M880-720v480q0 33-23.5 56.5T800-160H160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720Zm-720 80h640v-80H160v80Zm0 160v240h640v-240H160Zm0 240v-480 480Z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="dark:fill-white h-7 w-7"  viewBox="0 -960 960 960" ><path d="M880-720v480q0 33-23.5 56.5T800-160H160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720Zm-720 80h640v-80H160v80Zm0 160v240h640v-240H160Zm0 240v-480 480Z"/></svg>
         </div>
 		<div class="flex flex-col justify-center gap-4">
 			<label class="label" style="padding-top: 10px;">
