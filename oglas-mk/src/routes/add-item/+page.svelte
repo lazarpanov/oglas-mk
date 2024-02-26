@@ -1,27 +1,29 @@
 <script lang="ts">
-	import { enhance } from "$app/forms";
-  	import Dropzone from "svelte-file-dropzone";
-	  let files = {
-    accepted: [],
-    rejected: []
-  };
+	import { enhance } from '$app/forms';
+	import Dropzone from 'svelte-file-dropzone';
+	let files = {
+		accepted: [],
+		rejected: []
+	};
 
-  function handleFilesSelect(e) {
-    const { acceptedFiles, fileRejections } = e.detail;
-    files.accepted = [...files.accepted, ...acceptedFiles];
-    files.rejected = [...files.rejected, ...fileRejections];
-  }
-
-  
+	function handleFilesSelect(e) {
+		const { acceptedFiles, fileRejections } = e.detail;
+		files.accepted = [...files.accepted, ...acceptedFiles];
+		files.rejected = [...files.rejected, ...fileRejections];
+	}
 </script>
 
 <!-- svelte-ignore a11y-label-has-associated-control -->
 <div class="flex h-full w-full items-start justify-center px-4 pt-12">
-	<form class="flex w-[400px] flex-col space-y-4 rounded-xl p-8 shadow-2xl" method="post" use:enhance={({ formData }) => {
-        files.accepted.forEach((file) => {
-            formData.append('file', file);
-        });
-    }}>
+	<form
+		class="flex w-[400px] flex-col space-y-4 rounded-xl p-8 shadow-2xl"
+		method="post"
+		use:enhance={({ formData }) => {
+			files.accepted.forEach((file) => {
+				formData.append('file', file);
+			});
+		}}
+	>
 		<h3 class="h3 font-bold">Create a new item</h3>
 		<div class="flex flex-col justify-center gap-4">
 			<label class="label" style="padding-top: 10px;">
@@ -55,7 +57,12 @@
 			<label class="label">
 				<span>Description</span>
 				<!-- (input here) -->
-				<textarea class="textarea px-2 py-1" rows="4" placeholder="Description" name="description" />
+				<textarea
+					class="textarea px-2 py-1"
+					rows="4"
+					placeholder="Description"
+					name="description"
+				/>
 			</label>
 
 			<Dropzone on:drop={handleFilesSelect} />

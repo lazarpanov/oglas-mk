@@ -2,6 +2,9 @@
 	import { Avatar } from '@skeletonlabs/skeleton';
 	import type { Item } from '../types';
 	//import { Link } from 'svelte-routing';
+	import { firebaseApp, firebaseAuth, db } from '../lib/firebase';
+	const firebaseapp = firebaseApp;
+	console.log(firebaseApp);
 	const bobr = 'https://img-9gag-fun.9cache.com/photo/aGEQMDZ_460s.jpg';
 
 	export let item: Item = {
@@ -12,7 +15,6 @@
 		seller: '',
 		id: ''
 	};
-	console.log(item);
 </script>
 
 <a class="card variant-primary card-hover w-64 overflow-hidden" href="/item/{item.id}">
