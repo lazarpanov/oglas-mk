@@ -16,7 +16,7 @@
 			const user = result.user;
 			const response = await updateProfile(user, {displayName})
 
-			console.log(response)
+			// console.log(response)
 
 		  goto('/auth/log-in');
 		})
