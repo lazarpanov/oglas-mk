@@ -1,7 +1,7 @@
 import { db } from '$lib/firebase';
 import type { Actions } from '@sveltejs/kit';
 import { addDoc, doc, setDoc, collection } from 'firebase/firestore';
-import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
+import { getDownloadURL, getStorage, ref, uploadBytes, getMetadata } from 'firebase/storage';
 import { url } from 'inspector';
 
 export const actions: Actions = {
@@ -14,10 +14,10 @@ export const actions: Actions = {
 		const price = formData.get('price') as string;
 		const desc = formData.get('description') as string;
 		const files = formData.getAll('file') as File[];
-		const imageUrls = {};
+		const imageUrls: { name: string, url: string }[] = [];
 		const createdBy = locals.user.displayName;
 		console.log(createdBy);
-		
+
 
 		// files.forEach(async (file) => {
 		// 	const storageRef = ref(storage, file.name);
@@ -31,7 +31,7 @@ export const actions: Actions = {
 		// 		});
 		// 	});
 		// });
-    await Promise.all(files.map(async (file) => {
+		await Promise.all(files.map(async (file) => {
 			const storageRef = ref(storage, file.name);
 
 			const snapshot = await uploadBytes(storageRef, file);
@@ -39,7 +39,8 @@ export const actions: Actions = {
 
 			const url = await getDownloadURL(storageRef);
 			// console.log(url);
-			imageUrls[url] = true;
+			const metadata = await getMetadata(storageRef)
+			imageUrls.push({ name: metadata.name, url });
 		}));
 
 		// console.log(title, price, desc, imageUrls);

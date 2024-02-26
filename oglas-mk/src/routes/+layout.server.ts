@@ -6,12 +6,13 @@ import { onAuthStateChanged } from 'firebase/auth';
 import type { Actions } from '@sveltejs/kit';
 
 export async function load({ url, locals }) {
- if (browser) {
-  try {
-   firebaseApp();
-  } catch (ex) {
-   console.error(ex);
-  }
- }
- return {user : locals.user}
+    if (browser) {
+        try {
+            firebaseApp();
+        } catch (ex) {
+            console.error(ex);
+        }
+    }
+    return { user: locals.user }
 }
+

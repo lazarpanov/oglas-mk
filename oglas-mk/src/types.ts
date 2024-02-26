@@ -3,8 +3,9 @@ export interface Item {
     price: number;
     description: string;
     createdAt: string;
-    seller: string;
+    createdBy: string;
+    imageUrls: { name: string, url: string }[];
+    id:string
     //Izbrisi posle koga ke se stavi database
-    id:string;
 }
 
