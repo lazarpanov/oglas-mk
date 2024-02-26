@@ -13,7 +13,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 	if (user) {
 		// console.log("priny", user.displayName)
 		event.locals.user = {displayName: user.displayName, email: user.email}
-		console.log(event.locals.user)
+		// console.log(event.locals.user)
 	}
 
 	const whitelist = ['/', '/auth/log-in', '/auth/register'];

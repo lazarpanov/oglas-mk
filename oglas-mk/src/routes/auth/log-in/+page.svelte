@@ -14,7 +14,7 @@
 	const login = () => {
     signInWithEmailAndPassword(firebaseAuth, email, password)
       .then((result) => {
-		console.log(result);
+		// console.log(result);
         goto('/');
       })
       .catch((error) => {

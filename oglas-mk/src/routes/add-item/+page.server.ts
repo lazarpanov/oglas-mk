@@ -15,6 +15,9 @@ export const actions: Actions = {
 		const desc = formData.get('description') as string;
 		const files = formData.getAll('file') as File[];
 		const imageUrls = {};
+		const createdBy = locals.user.displayName;
+		console.log(createdBy);
+		
 
 		// files.forEach(async (file) => {
 		// 	const storageRef = ref(storage, file.name);
@@ -32,19 +35,20 @@ export const actions: Actions = {
 			const storageRef = ref(storage, file.name);
 
 			const snapshot = await uploadBytes(storageRef, file);
-			console.log('Uploaded a blob or file!');
+			// console.log('Uploaded a blob or file!');
 
 			const url = await getDownloadURL(storageRef);
-			console.log(url);
+			// console.log(url);
 			imageUrls[url] = true;
 		}));
 
-		console.log(title, price, desc, imageUrls);
+		// console.log(title, price, desc, imageUrls);
 		await addDoc(collection(db, 'items'), {
 			title: title,
 			price: price,
 			description: desc,
-			imageUrls: imageUrls
+			imageUrls: imageUrls,
+			createdBy: createdBy
 		});
 	}
 } satisfies Actions;
