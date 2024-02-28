@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 	import { replaceState } from '$app/navigation';
 	import { onMount } from 'svelte';
 	import { Avatar } from '@skeletonlabs/skeleton';
@@ -88,4 +88,4 @@
 			</div>
 		{/if}
 	{/each}
-</div>
+</div> -->

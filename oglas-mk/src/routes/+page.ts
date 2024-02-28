@@ -28,7 +28,7 @@ const fetchItems = async () => {
         });
 
         // Log items
-        console.log(items);
+        //console.log(items);
 
         // Listen for real-time updates to the Firestore collection
     } catch (error) {
