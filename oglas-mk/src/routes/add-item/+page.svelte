@@ -66,6 +66,11 @@
 			</label>
 
 			<Dropzone on:drop={handleFilesSelect} />
+			<ol>
+				{#each files.accepted as item}
+					<li>{item.name}</li>
+				{/each}
+			</ol>
 			<button type="submit" class="btn variant-filled">Register item</button>
 		</div>
 	</form>
