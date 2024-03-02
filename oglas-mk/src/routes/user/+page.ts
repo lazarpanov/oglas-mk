@@ -3,13 +3,15 @@ import { firebaseApp, firebaseAuth, db } from '../../lib/firebase';
 import { collection, query, where, getDocs, onSnapshot, QuerySnapshot } from 'firebase/firestore';
 import type { PageLoad } from "../$types";
 
+import { page } from '$app/stores';
+
 export const load: PageLoad = async () => {
     return { items: await fetchItems() }
 };
 
 const fetchItems = async () => {
     const colRef = collection(db, 'items');
-    const q = query(colRef, where('createdBy', '==', firebaseAuth.currentUser.displayName));
+    const q = query(colRef);
     let items: Item[] = [];
     try {
         // Fetch initial data from the Firestore collection

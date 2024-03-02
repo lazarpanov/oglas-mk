@@ -104,6 +104,7 @@
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: center;
+		max-height: 300px;
 		gap: 20px;
 		padding: 20px;
 	}
