@@ -4,7 +4,7 @@
 
 	export let item: Item;
 
-	console.log(item);
+	//console.log(item);
 </script>
 
 <a class="card variant-primary card-hover w-64 overflow-hidden" href="/item/{item.id}">

@@ -28,8 +28,6 @@
 		item = items.find((item) => item.id === id);
 	});
 
-	const bobr = 'https://img-9gag-fun.9cache.com/photo/aGEQMDZ_460s.jpg';
-
 	let elemCarousel: HTMLDivElement;
 
 	function carouselLeft(): void {
