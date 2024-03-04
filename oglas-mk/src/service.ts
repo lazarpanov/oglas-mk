@@ -7,7 +7,7 @@ export const fetchItems = async (searchQuery: string = "") => {
     const colRef = collection(db, 'items');
     let q = query(colRef);
     if (searchQuery !== "") {
-        q = query(colRef, where("title", ">=", searchQuery), where("title", "<=", searchQuery + "\uf8ff"));
+        q = query(colRef, where("title_lowercase", ">=", searchQuery.toLowerCase()), where("title_lowercase", "<=", searchQuery.toLowerCase() + "\uf8ff"));
     }
     console.log(q)
     let items: Item[] = [];

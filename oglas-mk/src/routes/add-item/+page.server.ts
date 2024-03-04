@@ -47,6 +47,7 @@ export const actions: Actions = {
 		// console.log(title, price, desc, imageUrls);
 		await addDoc(collection(db, 'items'), {
 			title: title,
+			title_lowercase: title.toLowerCase(),
 			price: price,
 			description: desc,
 			imageUrls: imageUrls,
