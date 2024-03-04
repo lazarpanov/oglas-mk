@@ -19,7 +19,7 @@
 		<Avatar initials={raboti.charAt(0) + raboti.charAt(raboti.lastIndexOf(' ') + 1)} width="w-12" />
 		<div class="flex flex-col">
 			<div><strong>Name:</strong> {raboti}</div>
-			<div><strong>Email:</strong> {raboti}</div>
+			<div><strong>Email:</strong> {$page.data.user.email}</div>
 		</div>
 	</div>
 </AppBar>
