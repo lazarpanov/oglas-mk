@@ -12,7 +12,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 	if (user) {
 		// console.log("priny", user.displayName)
-		event.locals.user = {displayName: user.displayName, email: user.email}
+		event.locals.user = { displayName: user.displayName, email: user.email, uid: user.uid }
 		// console.log(event.locals.user)
 	}
 

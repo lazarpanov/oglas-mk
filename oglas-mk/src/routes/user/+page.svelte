@@ -8,34 +8,26 @@
 	import { getAuth, getAdditionalUserInfo } from 'firebase/auth';
 	import { page } from '$app/stores';
 
-	let email = firebaseAuth.currentUser.email;
-	let username = firebaseAuth.currentUser.displayName;
-	$page.data.user.displayName;
-	console.log($page.data.user.displayName);
-	console.log(username);
+	let raboti = $page.data.user.displayName;
+
 	export let data;
 	$: items = data.items;
 </script>
 
 <AppBar padding="p-8"
 	><div class="user-info flex w-full gap-4">
-		<Avatar
-			initials={username.charAt(0) + username.charAt(username.lastIndexOf(' ') + 1)}
-			width="w-12"
-		/>
+		<Avatar initials={raboti.charAt(0) + raboti.charAt(raboti.lastIndexOf(' ') + 1)} width="w-12" />
 		<div class="flex flex-col">
-			<div><strong>Name:</strong> {username}</div>
-			<div><strong>Email:</strong> {email}</div>
+			<div><strong>Name:</strong> {raboti}</div>
+			<div><strong>Email:</strong> {raboti}</div>
 		</div>
 	</div>
 </AppBar>
 
 <div style="width:fit-content;" class="flex h-full flex-wrap items-start justify-start">
 	{#each items as item}
-		{#if item.createdBy === $page.data.user.displayName}
-			<div style="width: 250px;" class="flex h-full flex-wrap items-start justify-start gap-3 px-4">
-				<Card {item} />
-			</div>
-		{/if}
+		<div style="width: 250px;" class="flex h-full flex-wrap items-start justify-start gap-3 px-4">
+			<Card {item} />
+		</div>
 	{/each}
 </div>

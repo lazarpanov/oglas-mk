@@ -15,7 +15,8 @@ export const actions: Actions = {
 		const desc = formData.get('description') as string;
 		const files = formData.getAll('file') as File[];
 		const imageUrls: { name: string, url: string }[] = [];
-		const createdBy = locals.user.displayName;
+		const createdBy = locals.user.displayName
+		const userid = locals.user.uid;
 		console.log(createdBy);
 
 
