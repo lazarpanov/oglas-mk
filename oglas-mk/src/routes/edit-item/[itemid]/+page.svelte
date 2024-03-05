@@ -1,6 +1,30 @@
 <script lang="ts">
-	import { FileDropzone } from '@skeletonlabs/skeleton';
-</script>
+	import { onMount } from 'svelte';
+	import type { Item } from '../../../types';
+	import { enhance } from '$app/forms';
+	import Dropzone from 'svelte-file-dropzone';
+
+	//import { load } from './+page.server';
+
+      export async function loadPage({ params }) {
+        return ({ params });
+    }
+
+	let files = {
+		accepted: [],
+		rejected: []
+	};
+
+	function handleFilesSelect(e) {
+		const { acceptedFiles, fileRejections } = e.detail;
+		files.accepted = [...files.accepted, ...acceptedFiles];
+		files.rejected = [...files.rejected, ...fileRejections];
+	}
+
+
+export let data;
+$: items = data.item;
+		</script>
 
 <!-- svelte-ignore a11y-label-has-associated-control -->
 <div class="flex h-full w-full items-start justify-center px-4 pt-12">
@@ -10,7 +34,7 @@
 			<label class="label" style="padding-top: 10px;">
 				<span>Title</span>
 				<!-- (input here) -->
-				<input class="input px-2 py-1" title="title" type="text" placeholder="Title" />
+				<input class="input px-2 py-1" title="title" type="text" bind:value={items.title} placeholder="Title" />
 			</label>
 			<label class="label">
 				<span>Price</span>
@@ -27,7 +51,7 @@
 							/></svg
 						>
 					</div>
-					<input type="text" placeholder="Price" class="input px-2 py-1" />
+					<input type="text"bind:value={items.price} placeholder="Price" class="input px-2 py-1" />
 					<select>
 						<option>MKD</option>
 						<option>EUR</option>
@@ -38,10 +62,15 @@
 			<label class="label">
 				<span>Description</span>
 				<!-- (input here) -->
-				<textarea class="textarea px-2 py-1" rows="4" placeholder="Description" />
+				<textarea class="textarea px-2 py-1" rows="4"bind:value={items.description} placeholder="Description" />
 			</label>
 
-			<FileDropzone name="files" class="mb-3 mt-3" />
+			<Dropzone on:drop={handleFilesSelect} />
+			<ol>
+				{#each files.accepted as item}
+					<li>{item.name}</li>
+				{/each}
+			</ol>
 			<button type="button" class="btn variant-filled">Register item</button>
 		</div>
 	</form>

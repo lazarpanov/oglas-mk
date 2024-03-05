@@ -7,6 +7,7 @@
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
 	import { getApps, initializeApp } from 'firebase/app';
+	import { page } from '$app/stores';
 
 	let items: Item[];
 	let item: Item;
@@ -92,6 +93,9 @@
 				<p class="price">${item.price}</p>
 				<p>{item.description}</p>
 				<button>BUY</button>
+				{#if item.createdBy===$page.data.user.displayName}
+				<a href="http://localhost:5173/edit-item/{item.id}">EDIT ITEM</a>
+				{/if}
 			</div>
 		</div>
 	</div>
