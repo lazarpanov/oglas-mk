@@ -1,4 +1,3 @@
-export type PageServerLoad<T> = (params: T) => Promise<{ item: any }> // Adjust the type of `params` as per your requirement
 
 export interface Item {
     title: string;
