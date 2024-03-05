@@ -23,7 +23,7 @@
 		/>
 		<div class="flex flex-auto items-center justify-between">
 			<h6 class="font-bold" data-toc-ignore>{item.createdBy}</h6>
-			<small>On 26/02/2024</small>
+			<small>On {item.createdAt}</small>
 		</div>
 	</footer>
 </a>

@@ -17,8 +17,12 @@ export const actions: Actions = {
 		const imageUrls: { name: string, url: string }[] = [];
 		const createdBy = locals.user.displayName
 		const userid = locals.user.uid;
-		console.log(createdBy);
-
+		const date = new Date();
+		const day = date.getDate();
+		const month = date.getMonth() + 1;
+		const year = date.getFullYear();
+		const formattedDate = `${day}.${month}.${year}`;
+		const title_lowercase = title.toLowerCase();
 
 		// files.forEach(async (file) => {
 		// 	const storageRef = ref(storage, file.name);
@@ -47,11 +51,12 @@ export const actions: Actions = {
 		// console.log(title, price, desc, imageUrls);
 		await addDoc(collection(db, 'items'), {
 			title: title,
-			title_lowercase: title.toLowerCase(),
+			title_lowercase: title_lowercase,
 			price: price,
 			description: desc,
 			imageUrls: imageUrls,
-			createdBy: createdBy
+			createdBy: createdBy,
+			createdAt: formattedDate
 		});
 	}
 } satisfies Actions;
