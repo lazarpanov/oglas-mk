@@ -32,6 +32,6 @@ if (!getApps().length) {
 const firebaseAuth = getAuth(firebaseApp);
 const db = getFirestore(firebaseApp);
 
+const storage = getStorage(firebaseApp);
 
-
-export { firebaseApp, firebaseAuth, db };
+export { firebaseApp, firebaseAuth, db, storage };

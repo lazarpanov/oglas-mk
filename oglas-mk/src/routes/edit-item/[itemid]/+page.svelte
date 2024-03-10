@@ -3,9 +3,10 @@
 	import type { Item } from '../../../types';
 	import { enhance } from '$app/forms';
 	import Dropzone from 'svelte-file-dropzone';
-
+	import { firebaseApp, firebaseAuth, db, storage } from '../../../lib/firebase';
+	import { doc, updateDoc, deleteField, deleteDoc } from 'firebase/firestore';
+	import { getDownloadURL, getStorage, ref, uploadBytes, getMetadata } from 'firebase/storage';
 	//import { load } from './+page.server';
-
 	export async function loadPage({ params }) {
 		return { params };
 	}
@@ -28,6 +29,50 @@
 
 	export let data;
 	$: items = data.item;
+
+	async function editItem(itemId: string) {
+		try {
+			const itemRef = doc(db, 'items', itemId);
+
+			// Use updateDoc to update specific fields in the document
+			await updateDoc(itemRef, {
+				title: items.title,
+				price: items.price,
+				description: items.description
+
+				// Add other fields as needed
+			});
+			const updatedImageUrls = [];
+
+			await Promise.all(
+				files.accepted.map(async (file) => {
+					const storageRef = ref(storage, file.name);
+					const snapshot = await uploadBytes(storageRef, file);
+					const url = await getDownloadURL(storageRef);
+					const metadata = await getMetadata(storageRef);
+					updatedImageUrls.push({ name: metadata.name, url });
+				})
+			);
+
+			// Use updateDoc to update the document with the new imageUrls array
+			await updateDoc(itemRef, { imageUrls: updatedImageUrls });
+			window.location.href = '/';
+		} catch (error) {
+			// Handle errors
+			console.error('Error editing item:', error);
+			// Optionally, show an error message to the user
+		}
+	}
+	async function deleteItem(itemId: string) {
+		try {
+			const itemRef = doc(db, 'items', itemId);
+
+			await deleteDoc(itemRef);
+			window.location.href = '/';
+		} catch (error) {
+			console.error('Error deleting item:', error);
+		}
+	}
 </script>
 
 <!-- svelte-ignore a11y-label-has-associated-control -->
@@ -104,7 +149,12 @@
 					</div>
 				{/each}
 			</div>
-			<button type="button" class="btn variant-filled">Register item</button>
+			<button type="button" class="btn variant-filled" on:click={() => editItem(items.id)}
+				>Edit item</button
+			>
+			<button type="button" class="btn variant-filled" on:click={() => deleteItem(items.id)}
+				>Delete item</button
+			>
 		</div>
 	</form>
 </div>
