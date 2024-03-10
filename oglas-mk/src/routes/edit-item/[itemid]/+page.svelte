@@ -37,9 +37,9 @@
 			// Use updateDoc to update specific fields in the document
 			await updateDoc(itemRef, {
 				title: items.title,
+				title_lowercase: items.title.toLowerCase(),
 				price: items.price,
 				description: items.description
-
 				// Add other fields as needed
 			});
 			const updatedImageUrls = [];
