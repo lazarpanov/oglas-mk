@@ -56,7 +56,8 @@ export const actions: Actions = {
 			description: desc,
 			imageUrls: imageUrls,
 			createdBy: createdBy,
-			createdAt: formattedDate
+			createdAt: formattedDate,
+			userid: userid
 		});
 	}
 } satisfies Actions;
