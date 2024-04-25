@@ -46,6 +46,7 @@
 				: elemCarousel.scrollLeft + elemCarousel.clientWidth; // step right
 		elemCarousel.scroll(x, 0);
 	}
+
 </script>
 
 {#if item}
@@ -92,9 +93,9 @@
 				<h2>{item.title}</h2>
 				<p class="price">${item.price}</p>
 				<p>{item.description}</p>
-				<button>BUY</button>
-				{#if item.createdBy===$page.data.user.displayName}
-				<a href="http://localhost:5173/edit-item/{item.id}">EDIT ITEM</a>
+				<a href="/payment/{item.id}">BUY</a>
+				{#if item.createdBy === $page.data.user.displayName}
+					<a href="http://localhost:5173/edit-item/{item.id}">EDIT ITEM</a>
 				{/if}
 			</div>
 		</div>

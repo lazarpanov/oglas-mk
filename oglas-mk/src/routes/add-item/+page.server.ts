@@ -1,5 +1,5 @@
 import { db } from '$lib/firebase';
-import type { Actions } from '@sveltejs/kit';
+import { redirect, type Actions } from '@sveltejs/kit';
 import { addDoc, doc, setDoc, collection } from 'firebase/firestore';
 import { getDownloadURL, getStorage, ref, uploadBytes, getMetadata } from 'firebase/storage';
 import { url } from 'inspector';
@@ -59,5 +59,6 @@ export const actions: Actions = {
 			createdAt: formattedDate,
 			userid: userid
 		});
+		redirect(300, "/");
 	}
 } satisfies Actions;
