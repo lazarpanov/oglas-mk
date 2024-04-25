@@ -94,7 +94,7 @@
 				<p class="price">${item.price}</p>
 				<p>{item.description}</p>
 				<a href="/payment/{item.id}">BUY</a>
-				{#if item.createdBy === $page.data.user.displayName}
+				{#if item.createdBy === $page.data.user?.displayName}
 					<a href="http://localhost:5173/edit-item/{item.id}">EDIT ITEM</a>
 				{/if}
 			</div>
