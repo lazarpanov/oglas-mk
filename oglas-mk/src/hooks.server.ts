@@ -1,5 +1,7 @@
 import { goto } from '$app/navigation';
 import { firebaseAuth } from '$lib/firebase';
+import { collection, query, where, getDocs, onSnapshot, QuerySnapshot, Query, type DocumentData } from 'firebase/firestore';
+import { db } from '$lib/firebase';
 import { redirect, type Handle } from '@sveltejs/kit';
 import { onAuthStateChanged } from 'firebase/auth';
 
@@ -17,10 +19,12 @@ export const handle: Handle = async ({ event, resolve }) => {
 	}
 
 	const whitelist = ['/', '/auth/log-in', '/auth/register'];
-
 	if (!whitelist.includes(path) && !user) {
 		throw redirect(303, '/auth/log-in');
 	}
+
+
 	const response = await resolve(event);
 	return response;
+
 };
