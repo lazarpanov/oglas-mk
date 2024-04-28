@@ -6,13 +6,13 @@
 	$: item = data.item;
 	console.log(item);
 
-	let cardHolder = "";
-	let cardNumber = "";
-	let expiry = "";
+	let cardHolder = '';
+	let cardNumber = '';
+	let expiry = '';
 	let cvv = 0;
 
 	async function buyItem(itemId: string) {
-		if (cardHolder == "" || cardNumber == "" || expiry == "" || cvv == 0) {
+		if (cardHolder == '' || cardNumber == '' || expiry == '' || cvv == 0) {
 			return;
 		}
 		try {
@@ -24,7 +24,6 @@
 			console.error('Error deleting item:', error);
 		}
 	}
-
 </script>
 
 <!-- svelte-ignore a11y-label-has-associated-control -->
@@ -45,7 +44,13 @@
 			<label class="label" style="padding-top: 10px;">
 				<span>Card Holder</span>
 				<!-- (input here) -->
-				<input class="input px-2 py-1" title="cardHolder" type="text" placeholder="Barry Allen" bind:value={cardHolder} />
+				<input
+					class="input px-2 py-1"
+					title="cardHolder"
+					type="text"
+					placeholder="Barry Allen"
+					bind:value={cardHolder}
+				/>
 			</label>
 			<label class="label">
 				<span>Card Number</span>
@@ -62,16 +67,28 @@
 				<label class="label">
 					<span>Expiry</span>
 					<!-- (input here) -->
-					<input class="input px-2 py-1" title="expiry" type="text" placeholder="MM/YYYY" bind:value={expiry}/>
+					<input
+						class="input px-2 py-1"
+						title="expiry"
+						type="text"
+						placeholder="MM/YYYY"
+						bind:value={expiry}
+					/>
 				</label>
 				<label class="label">
 					<span>CVV/CVC</span>
 					<!-- (input here) -->
-					<input class="input px-2 py-1" title="cvv" type="number" placeholder="***" bind:value={cvv} />
+					<input
+						class="input px-2 py-1"
+						title="cvv"
+						type="number"
+						placeholder="***"
+						bind:value={cvv}
+					/>
 				</label>
 			</div>
 			<button type="button" class="btn variant-filled mt-5" on:click={() => buyItem(item.id)}
-				>Pay {item.price}</button
+				>Pay {item.price} $</button
 			>
 		</div>
 	</form>
