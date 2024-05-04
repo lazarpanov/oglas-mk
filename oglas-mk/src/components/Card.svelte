@@ -6,10 +6,9 @@
 
 	//console.log(item);
 </script>
-
-<a class="card variant-primary card-hover w-64 overflow-hidden" href="/item/{item.id}">
+<a class="card variant-primary card-hover size-64 overflow-hidden" href="/item/{item.id}">
 	<header>
-		<img class="w-64" src={item.imageUrls.at(0).url} alt="Post" />
+		<img class="w-64 h-32" src={item.imageUrls.at(0).url} alt="Post" />
 	</header>
 	<div class="space-y-4 p-4">
 		<h3 class="h3" data-toc-ignore>{item.title}</h3>
