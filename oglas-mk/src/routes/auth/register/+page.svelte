@@ -61,7 +61,7 @@
 				<input
 					class="input px-2 py-1"
 					title="password"
-					type="text"
+					type="password"
 					placeholder="Password"
 					required
 					bind:value={password}
@@ -73,7 +73,7 @@
 				<input
 					class="input px-2 py-1"
 					title="confirmPassword"
-					type="text"
+					type="password"
 					placeholder="Confirm password"
 				/>
 			</label>
