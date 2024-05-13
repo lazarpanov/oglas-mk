@@ -92,10 +92,10 @@
 				/>
 				<h1>{item.createdBy}</h1>
 			</div>
-			<div>
+			
 				<h2>{item.title}</h2>
 				<p class="price">${item.price}</p>
-				<p class="font-bold">{item.description}</p>
+				<p class="font-bold" style=" word-wrap: break-word;">{item.description}</p>
 				<form action="/payment/{item.id}" class="mr-2" style="display:inline-block;">
 					<button type="submit" class="btn variant-filled-secondary mb-4 mt-4 h-8">
 						<svg xmlns="http://www.w3.org/2000/svg" class="fill-white" height="24" viewBox="0 -960 960 960" width="24"><path d="M560-440q-50 0-85-35t-35-85q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35ZM280-320q-33 0-56.5-23.5T200-400v-320q0-33 23.5-56.5T280-800h560q33 0 56.5 23.5T920-720v320q0 33-23.5 56.5T840-320H280Zm80-80h400q0-33 23.5-56.5T840-480v-160q-33 0-56.5-23.5T760-720H360q0 33-23.5 56.5T280-640v160q33 0 56.5 23.5T360-400Zm440 240H120q-33 0-56.5-23.5T40-240v-440h80v440h680v80ZM280-400v-320 320Z"/></svg></button>
@@ -106,7 +106,7 @@
 							<svg xmlns="http://www.w3.org/2000/svg" class="fill-white" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z"/></svg></button>
 					</form>
 					{/if}
-			</div>
+			
 		</div>
 	</div>
 
@@ -156,7 +156,6 @@
 			flex-direction: column;
 			align-items: center;
 		}
-
 
 
 		.product-details {
