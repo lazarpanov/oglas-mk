@@ -14,7 +14,7 @@
 	let searchQuery = '';
 
 	const handleSearch = async () => {
-		console.log(searchQuery);
+		//console.log(searchQuery);
 		await fetchItems(searchQuery).then((result) => {
 			itemsStore.set(result);
 		});

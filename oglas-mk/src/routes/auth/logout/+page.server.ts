@@ -7,7 +7,7 @@ export const actions: Actions = {
     // console.log("test")
     const token = cookies.get('bearerToken');
     if (!token) {
-      console.log('Nobody is logged in!');
+     // console.log('Nobody is logged in!');
       redirect(303, '/');
     }
     cookies.delete('bearerToken', { path: '/' });
@@ -15,10 +15,10 @@ export const actions: Actions = {
     const auth = getAuth();
     signOut(auth).then(() => {
       // Sign-out successful.
-      console.log("uspeshno")
+      //console.log("uspeshno")
     }).catch((error) => {
       // An error happened.
-      console.log("neuspeshno")
+     // console.log("neuspeshno")
     });
     // console.log(locals.user)
     redirect(303, '/auth/log-in');

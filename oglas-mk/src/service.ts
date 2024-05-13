@@ -9,7 +9,7 @@ export const fetchItems = async (searchQuery: string = "") => {
     if (searchQuery !== "") {
         q = query(colRef, where("title_lowercase", ">=", searchQuery.toLowerCase()), where("title_lowercase", "<=", searchQuery.toLowerCase() + "\uf8ff"));
     }
-    console.log(q)
+    //console.log(q)
     let items: Item[] = [];
     try {
         // Fetch initial data from the Firestore collection
@@ -17,13 +17,13 @@ export const fetchItems = async (searchQuery: string = "") => {
 
         // Iterate over the documents and populate the items array
         querySnapshot.forEach((doc) => {
-            // Assuming each document has the structure of an Item
+
             const itemData = doc.data() as Item;
             const itemWithId: Item = {
                 ...itemData,
                 id: doc.id
             }
-            console.log(itemWithId.id)
+           // console.log(itemWithId.id)
             items.push(itemWithId);
         });
 

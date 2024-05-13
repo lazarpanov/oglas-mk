@@ -15,8 +15,8 @@ export const actions: Actions = {
 
       const user = userCredential.user;
       const idToken = await getIdToken(user);
-      console.log("id token na userot xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxe", idToken)
-      console.log(user.uid)
+     // console.log("id token na userot xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxe", idToken)
+      //console.log(user.uid)
       // const response = signInWithEmailAndPassword(firebaseAuth, email, password)
       // if(!response) {
       //     throw new Error(`Something went wrong: {response}`)

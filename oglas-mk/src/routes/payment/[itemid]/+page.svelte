@@ -4,7 +4,7 @@
 
 	export let data;
 	$: item = data.item;
-	console.log(item);
+	//console.log(item);
 
 	let cardHolder = '';
 	let cardNumber = '';

@@ -28,7 +28,7 @@ const fetchItemById = async (itemId:string) => {
                 ...itemData,
                 id: docSnapshot.id
             };
-            console.log(itemWithId)
+         //   console.log(itemWithId)
             return itemWithId;
         } else {
             console.error('Item not found');

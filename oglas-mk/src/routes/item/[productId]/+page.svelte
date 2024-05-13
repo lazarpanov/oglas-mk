@@ -33,18 +33,18 @@
 
 	function carouselLeft(): void {
 		const x =
-			elemCarousel.scrollLeft === 0
-				? elemCarousel.clientWidth * elemCarousel.childElementCount // loop
-				: elemCarousel.scrollLeft - elemCarousel.clientWidth; // step left
-		elemCarousel.scroll(x, 0);
+		elemCarousel.scrollLeft === 0
+			? elemCarousel.clientWidth * elemCarousel.childElementCount // loop
+			: elemCarousel.scrollLeft - elemCarousel.clientWidth; // step left
+	elemCarousel.scroll(x, 0);
 	}
 
 	function carouselRight(): void {
 		const x =
-			elemCarousel.scrollLeft === elemCarousel.scrollWidth - elemCarousel.clientWidth
-				? 0 // loop
-				: elemCarousel.scrollLeft + elemCarousel.clientWidth; // step right
-		elemCarousel.scroll(x, 0);
+		elemCarousel.scrollLeft === elemCarousel.scrollWidth - elemCarousel.clientWidth
+			? 0 // loop
+			: elemCarousel.scrollLeft + elemCarousel.clientWidth; // step right
+	elemCarousel.scroll(x, 0);
 	}
 	function carouselThumbnail(index: number) {
 	elemCarousel.scroll(elemCarousel.clientWidth * index, 0);
@@ -53,8 +53,8 @@
 
 {#if item}
 	<div class="product-container">
-		<div class="product-images">
-			<div class="card grid grid-cols-[auto_1fr_auto] items-center gap-4 p-4">
+		<div style="min-width: 600px; min-height:500px; max-width:600px; max-height:500px">
+			<div style="min-width: 600px; min-height:500px; max-width:600px; max-height:500px" class="card grid grid-cols-[auto_1fr_auto] items-center gap-4 p-4">
 				<!-- Button: Left -->
 				<button type="button" class="btn-icon variant-filled" on:click={carouselLeft}>
 					{`<`}
@@ -67,7 +67,8 @@
 				>
 					{#each item.imageUrls as unsplashId}
 						<img
-							class="rounded-container-token w-[1024px] snap-center"
+							class="rounded-container-token min-w-full snap-center"
+							style="height: 400px;"
 							src={unsplashId.url}
 							alt={unsplashId.url}
 							loading="lazy"
@@ -79,20 +80,6 @@
 					{`>`}
 					<i class="fa-solid fa-arrow-right" />
 				</button>
-			</div>
-			<div class="card grid grid-cols-3 items-center gap-4 p-4">
-				{#each item.imageUrls as unsplashId, i}
-						
-							<img
-								class="w-32 h-16"
-								src="{unsplashId.url}"
-								alt={unsplashId.url}
-								loading="lazy"
-								on:click={() => carouselThumbnail(i)}
-								style="cursor:pointer;"
-							/>
-			
-				{/each}
 			</div>
 		</div>
 
@@ -108,14 +95,17 @@
 			<div>
 				<h2>{item.title}</h2>
 				<p class="price">${item.price}</p>
-				<p>{item.description}</p>
-				<form action="/payment/{item.id}">
-					<button type="submit" class="btn variant-filled-primary mb-4 mt-4 h-8">
+				<p class="font-bold">{item.description}</p>
+				<form action="/payment/{item.id}" class="mr-2" style="display:inline-block;">
+					<button type="submit" class="btn variant-filled-secondary mb-4 mt-4 h-8">
 						<svg xmlns="http://www.w3.org/2000/svg" class="fill-white" height="24" viewBox="0 -960 960 960" width="24"><path d="M560-440q-50 0-85-35t-35-85q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35ZM280-320q-33 0-56.5-23.5T200-400v-320q0-33 23.5-56.5T280-800h560q33 0 56.5 23.5T920-720v320q0 33-23.5 56.5T840-320H280Zm80-80h400q0-33 23.5-56.5T840-480v-160q-33 0-56.5-23.5T760-720H360q0 33-23.5 56.5T280-640v160q33 0 56.5 23.5T360-400Zm440 240H120q-33 0-56.5-23.5T40-240v-440h80v440h680v80ZM280-400v-320 320Z"/></svg></button>
-				</form>
+					</form>	
 				{#if item.createdBy === $page.data.user?.displayName}
-					<a href="http://localhost:5173/edit-item/{item.id}">EDIT ITEM</a>
-				{/if}
+					<form action="/edit-item/{item.id}" style="display: inline-block">
+						<button type="submit" class="btn variant-filled-warning mb-4 mt-4 h-8">
+							<svg xmlns="http://www.w3.org/2000/svg" class="fill-white" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z"/></svg></button>
+					</form>
+					{/if}
 			</div>
 		</div>
 	</div>
@@ -136,11 +126,7 @@
 		padding: 20px;
 	}
 
-	.product-images {
-		gap: 40px;
-		max-width: 400px;
-		max-height: fit-content;
-	}
+
 
 	.product-details {
 		flex: 1;
@@ -158,24 +144,12 @@
 	}
 	.product-details p.price {
 		font-size: 1.2rem;
-		color: #05ffc9;
+		color: red;
 		margin-bottom: 10px;
 	}
 
-	.product-details p {
-		margin-bottom: 20px;
-		font-size: 2rem;
-		overflow-wrap: break-word; /* Add this line */
-	}
 
-	button {
-		padding: 10px 20px;
-		font-size: 1rem;
-		background-color: #007bff;
-		color: #fff;
-		border: none;
-		cursor: pointer;
-	}
+
 
 	@media (max-width: 768px) {
 		.product-container {
@@ -183,9 +157,7 @@
 			align-items: center;
 		}
 
-		.product-images {
-			max-width: none;
-		}
+
 
 		.product-details {
 			max-width: none;

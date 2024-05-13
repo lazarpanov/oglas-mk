@@ -14,7 +14,7 @@ const fetchItems = async () => {
         return [];
     }
     const currentUserUid = firebaseAuth.currentUser.uid;
-    console.log(firebaseAuth.currentUser.displayName)
+   // console.log(firebaseAuth.currentUser.displayName)
     const colRef = collection(db, 'items');
     const q = query(colRef, where("createdBy", "==", firebaseAuth.currentUser.displayName));
     let items: Item[] = [];
@@ -30,7 +30,7 @@ const fetchItems = async () => {
                 ...itemData,
                 id: doc.id
             }
-            console.log(itemWithId.id)
+           // console.log(itemWithId.id)
             items.push(itemWithId);
         });
 
@@ -41,7 +41,7 @@ const fetchItems = async () => {
     } catch (error) {
         console.error('Error getting documents: ', error);
     }
-    console.log(items)
+    //console.log(items)
     return items;
 };
 

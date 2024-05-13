@@ -1,1 +1,1 @@
-<img src="https://th.bing.com/th/id/OIP.CkwB8R_80ZGUAkw1zAmcLgHaFj?rs=1&pid=ImgDetMain" />
+<img class="size-3/6" style="margin-left: 25%;" src="https://media.tenor.com/mWKaoVamqwcAAAAM/cat-staring-cat.gif" />
