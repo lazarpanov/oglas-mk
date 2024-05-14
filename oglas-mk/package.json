@@ -41,6 +41,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@floating-ui/dom": "^1.6.5",
 		"svelte-file-dropzone": "^2.0.4"
 	}
 }

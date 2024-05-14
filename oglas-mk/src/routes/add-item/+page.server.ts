@@ -13,6 +13,7 @@ export const actions: Actions = {
 		const title = formData.get('title') as string;
 		const price = formData.get('price') as string;
 		const desc = formData.get('description') as string;
+		const category = formData.get('category') as string;
 		const files = formData.getAll('file') as File[];
 		const imageUrls: { name: string, url: string }[] = [];
 		const createdBy = locals.user.displayName
@@ -53,6 +54,8 @@ export const actions: Actions = {
 			title: title,
 			title_lowercase: title_lowercase,
 			price: price,
+			category: category,
+			status: "active",
 			description: desc,
 			imageUrls: imageUrls,
 			createdBy: createdBy,

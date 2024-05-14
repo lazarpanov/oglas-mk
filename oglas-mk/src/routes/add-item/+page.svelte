@@ -70,6 +70,25 @@
 					name="description"
 				/>
 			</label>
+			<label class="label">
+				<span>Category</span>
+				<!-- (input here) -->
+				<select class="input px-2 py-1" name="category">
+					<option>Motors</option>
+					<option>Clothing, Shoes & Accessories</option>
+					<option>Sporting Goods</option>
+					<option>Toys & Hobbies</option>
+					<option>Home & Garden</option>
+					<option>Jewelry & Watches</option>
+					<option>Health & Beauty</option>
+					<option>Business & Industrial</option>
+					<option>Pet Supplies</option>
+					<option>Baby Essentials</option>
+					<option>Electronics</option>
+					<option>Collectibles & Art</option>
+					<option>Books, Movies & Music</option>
+				</select>
+			</label>
 
 			<Dropzone
 				on:drop={handleFilesSelect}

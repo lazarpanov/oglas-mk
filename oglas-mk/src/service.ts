@@ -3,11 +3,16 @@ import { db } from '$lib/firebase';
 import { collection, query, where, getDocs, onSnapshot, QuerySnapshot, Query, type DocumentData } from 'firebase/firestore';
 import type { Item } from './types';
 
-export const fetchItems = async (searchQuery: string = "") => {
+export const fetchItems = async (searchQuery: string = "", category: string = "Category") => {
+    console.log(category)
     const colRef = collection(db, 'items');
     let q = query(colRef);
-    if (searchQuery !== "") {
+    if (searchQuery !== "" && category !== "Category") { // dvete polni
+        q = query(colRef, where("title_lowercase", ">=", searchQuery.toLowerCase()), where("title_lowercase", "<=", searchQuery.toLowerCase() + "\uf8ff"), where("category", "==", category));
+    } else if (searchQuery !== "" && category === "Category") { // query polno category prazno 
         q = query(colRef, where("title_lowercase", ">=", searchQuery.toLowerCase()), where("title_lowercase", "<=", searchQuery.toLowerCase() + "\uf8ff"));
+    } else if (searchQuery === "" && category !== "Category") { // query prazno category polno
+        q = query(colRef, where("category", "==", category));
     }
     //console.log(q)
     let items: Item[] = [];

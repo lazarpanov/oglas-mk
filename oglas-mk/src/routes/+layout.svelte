@@ -1,9 +1,29 @@
 <script lang="ts">
 	import '../app.pcss';
-	import { AppShell, AppBar, LightSwitch } from '@skeletonlabs/skeleton';
+	import {
+		AppShell,
+		AppBar,
+		LightSwitch,
+		type PopupSettings,
+		ListBox,
+		ListBoxItem,
+		popup
+	} from '@skeletonlabs/skeleton';
 	import { page } from '$app/stores';
 	import { fetchItems } from '../service';
 	import { itemsStore } from '../stores';
+	import { computePosition, autoUpdate, offset, shift, flip, arrow } from '@floating-ui/dom';
+
+	import { storePopup } from '@skeletonlabs/skeleton';
+	storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
+	let comboboxValue: string;
+
+	const popupCombobox: PopupSettings = {
+		event: 'click',
+		target: 'popupCombobox',
+		placement: 'bottom',
+		closeQuery: '.listbox-item'
+	};
 
 	$: showFragments = $page.url.pathname === '/';
 	// console.log($page.data.user)
@@ -14,8 +34,7 @@
 	let searchQuery = '';
 
 	const handleSearch = async () => {
-		//console.log(searchQuery);
-		await fetchItems(searchQuery).then((result) => {
+		await fetchItems(searchQuery, comboboxValue).then((result) => {
 			itemsStore.set(result);
 		});
 	};
@@ -64,12 +83,20 @@
 		{#if showFragments}
 			<div class="flex items-center justify-center gap-1">
 				{#if $page.data.user}
-				<form action="/add-item">
-					<button type="submit" class="btn-icon variant-filled-primary mb-4 mt-4 h-8"><svg xmlns="http://www.w3.org/2000/svg" 	class="fill-white"
-						height="24"
-						viewBox="0 -960 960 960"
-						width="24"><path d="M440-280h80v-160h160v-80H520v-160h-80v160H280v80h160v160Zm40 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg></button>
-				</form>
+					<form action="/add-item">
+						<button type="submit" class="btn-icon variant-filled-primary mb-4 mt-4 h-8"
+							><svg
+								xmlns="http://www.w3.org/2000/svg"
+								class="fill-white"
+								height="24"
+								viewBox="0 -960 960 960"
+								width="24"
+								><path
+									d="M440-280h80v-160h160v-80H520v-160h-80v160H280v80h160v160Zm40 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"
+								/></svg
+							></button
+						>
+					</form>
 				{/if}
 				<input
 					class="input mb-4 mt-4 h-8 w-3/12"
@@ -90,6 +117,51 @@
 						/></svg
 					>
 				</button>
+				<!-- <button class="btn-icon variant-filled-primary mb-4 mt-4 h-8">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						height="24px"
+						viewBox="0 -960 960 960"
+						width="24px"
+						fill="#e8eaed"
+						><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" /></svg
+					>
+				</button> -->
+				<button class="btn variant-filled-primary w-48 justify-between" use:popup={popupCombobox}>
+					<span class="capitalize">{comboboxValue ?? 'Category'}</span>
+					<span>↓</span>
+				</button>
+				<div class="card w-48 py-2 shadow-xl" data-popup="popupCombobox">
+					<ListBox rounded="rounded-none">
+						<ListBoxItem bind:group={comboboxValue} name="medium" value="Category">Category</ListBoxItem>
+						<ListBoxItem bind:group={comboboxValue} name="medium" value="Motors">Motors</ListBoxItem>
+						<ListBoxItem bind:group={comboboxValue} name="medium" value="Clothing, Shoes & Accessories">Clothing, Shoes & Accessories</ListBoxItem
+						>
+						<ListBoxItem bind:group={comboboxValue} name="medium" value="Sporting Goods">Sporting Goods</ListBoxItem
+						>
+						<ListBoxItem bind:group={comboboxValue} name="medium" value="Toys & Hobbies">Toys & Hobbies</ListBoxItem
+						>
+						<ListBoxItem bind:group={comboboxValue} name="medium" value="Home & Garden">Home & Garden</ListBoxItem
+						>
+						<ListBoxItem bind:group={comboboxValue} name="medium" value="Jewelry & Watches">Jewelry & Watches</ListBoxItem
+						>
+						<ListBoxItem bind:group={comboboxValue} name="medium" value="Health & Beauty">Health & Beauty</ListBoxItem
+						>
+						<ListBoxItem bind:group={comboboxValue} name="medium" value="Business & Industrial">Business & Industrial</ListBoxItem
+						>
+						<ListBoxItem bind:group={comboboxValue} name="medium" value="Pet Supplies">Pet Supplies</ListBoxItem
+						>
+						<ListBoxItem bind:group={comboboxValue} name="medium" value="Baby Essentials">Baby Essentials</ListBoxItem
+						>
+						<ListBoxItem bind:group={comboboxValue} name="medium" value="Electronics">Electronics</ListBoxItem
+						>
+						<ListBoxItem bind:group={comboboxValue} name="medium" value="Collectibles & Art">Collectibles & Art</ListBoxItem
+						>
+						<ListBoxItem bind:group={comboboxValue} name="medium" value="Books, Movies & Music">Books, Movies & Music</ListBoxItem
+						>
+					</ListBox>
+					<div class="arrow bg-surface-100-800-token" />
+				</div>
 			</div>
 		{/if}
 	</svelte:fragment>
