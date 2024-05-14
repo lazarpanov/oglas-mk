@@ -22,22 +22,26 @@
 			<div><strong>Email:</strong> {$page.data.user.email}</div>
 		</div>
 	</div> -->
-		<dl class="list-dl">
-				<div>
-					<Avatar initials={raboti.charAt(0) + raboti.charAt(raboti.lastIndexOf(' ') + 1)} width="w-12" />
-					<span class="flex-auto">
-						<dt class="font-bold">Name: {raboti}</dt>
-						<dd class="text-sm opacity-50">Email: {$page.data.user.email}</dd>
-					</span>
-				</div>
-		</dl>
-	
+	<dl class="list-dl">
+		<div>
+			<Avatar
+				initials={raboti.charAt(0) + raboti.charAt(raboti.lastIndexOf(' ') + 1)}
+				width="w-12"
+			/>
+			<span class="flex-auto">
+				<dt class="font-bold">Name: {raboti}</dt>
+				<dd class="text-sm opacity-50">Email: {$page.data.user.email}</dd>
+			</span>
+		</div>
+	</dl>
 </AppBar>
 
-<div style="width:fit-content;" class="flex my-3 h-full flex-wrap items-start justify-start">
+<div style="width:fit-content;" class="my-3 flex h-full flex-wrap items-start justify-start">
 	{#each items as item}
-		<div style="width: 250px;" class="flex h-full flex-wrap items-start justify-start gap-3 px-4">
-			<Card {item} />
-		</div>
+		{#if item.status === 'active'}
+			<div style="width: 250px;" class="flex h-full flex-wrap items-start justify-start gap-3 px-4">
+				<Card {item} />
+			</div>
+		{/if}
 	{/each}
 </div>

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { db } from '$lib/firebase.js';
-	import { deleteDoc, doc } from 'firebase/firestore';
+	import { deleteDoc, doc, updateDoc } from 'firebase/firestore';
 
 	export let data;
 	$: item = data.item;
@@ -18,7 +18,7 @@
 		try {
 			const itemRef = doc(db, 'items', itemId);
 
-			await deleteDoc(itemRef);
+			await updateDoc(itemRef, { status: 'paid' });
 			window.location.href = '/';
 		} catch (error) {
 			console.error('Error deleting item:', error);

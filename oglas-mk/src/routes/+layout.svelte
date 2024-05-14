@@ -127,37 +127,61 @@
 						><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" /></svg
 					>
 				</button> -->
-				<button class="btn variant-filled-primary w-48 justify-between" use:popup={popupCombobox}>
+				<button
+					style="width: min-content;"
+					class="btn variant-filled-primary w-48 justify-between"
+					use:popup={popupCombobox}
+				>
 					<span class="capitalize">{comboboxValue ?? 'Category'}</span>
 					<span>↓</span>
 				</button>
-				<div class="card w-48 py-2 shadow-xl" data-popup="popupCombobox">
+				<div
+					class="card max-h-[160px] w-48 overflow-auto py-2 shadow-xl"
+					data-popup="popupCombobox"
+				>
 					<ListBox rounded="rounded-none">
-						<ListBoxItem bind:group={comboboxValue} name="medium" value="Category">Category</ListBoxItem>
-						<ListBoxItem bind:group={comboboxValue} name="medium" value="Motors">Motors</ListBoxItem>
-						<ListBoxItem bind:group={comboboxValue} name="medium" value="Clothing, Shoes & Accessories">Clothing, Shoes & Accessories</ListBoxItem
+						<ListBoxItem bind:group={comboboxValue} name="medium" value="Category"
+							>Category</ListBoxItem
 						>
-						<ListBoxItem bind:group={comboboxValue} name="medium" value="Sporting Goods">Sporting Goods</ListBoxItem
+						<ListBoxItem bind:group={comboboxValue} name="medium" value="Motors">Motors</ListBoxItem
 						>
-						<ListBoxItem bind:group={comboboxValue} name="medium" value="Toys & Hobbies">Toys & Hobbies</ListBoxItem
+						<ListBoxItem
+							bind:group={comboboxValue}
+							name="medium"
+							value="Clothing, Shoes & Accessories">Clothing, Shoes & Accessories</ListBoxItem
 						>
-						<ListBoxItem bind:group={comboboxValue} name="medium" value="Home & Garden">Home & Garden</ListBoxItem
+						<ListBoxItem bind:group={comboboxValue} name="medium" value="Sporting Goods"
+							>Sporting Goods</ListBoxItem
 						>
-						<ListBoxItem bind:group={comboboxValue} name="medium" value="Jewelry & Watches">Jewelry & Watches</ListBoxItem
+						<ListBoxItem bind:group={comboboxValue} name="medium" value="Toys & Hobbies"
+							>Toys & Hobbies</ListBoxItem
 						>
-						<ListBoxItem bind:group={comboboxValue} name="medium" value="Health & Beauty">Health & Beauty</ListBoxItem
+						<ListBoxItem bind:group={comboboxValue} name="medium" value="Home & Garden"
+							>Home & Garden</ListBoxItem
 						>
-						<ListBoxItem bind:group={comboboxValue} name="medium" value="Business & Industrial">Business & Industrial</ListBoxItem
+						<ListBoxItem bind:group={comboboxValue} name="medium" value="Jewelry & Watches"
+							>Jewelry & Watches</ListBoxItem
 						>
-						<ListBoxItem bind:group={comboboxValue} name="medium" value="Pet Supplies">Pet Supplies</ListBoxItem
+						<ListBoxItem bind:group={comboboxValue} name="medium" value="Health & Beauty"
+							>Health & Beauty</ListBoxItem
 						>
-						<ListBoxItem bind:group={comboboxValue} name="medium" value="Baby Essentials">Baby Essentials</ListBoxItem
+						<ListBoxItem bind:group={comboboxValue} name="medium" value="Business & Industrial"
+							>Business & Industrial</ListBoxItem
 						>
-						<ListBoxItem bind:group={comboboxValue} name="medium" value="Electronics">Electronics</ListBoxItem
+						<ListBoxItem bind:group={comboboxValue} name="medium" value="Pet Supplies"
+							>Pet Supplies</ListBoxItem
 						>
-						<ListBoxItem bind:group={comboboxValue} name="medium" value="Collectibles & Art">Collectibles & Art</ListBoxItem
+						<ListBoxItem bind:group={comboboxValue} name="medium" value="Baby Essentials"
+							>Baby Essentials</ListBoxItem
 						>
-						<ListBoxItem bind:group={comboboxValue} name="medium" value="Books, Movies & Music">Books, Movies & Music</ListBoxItem
+						<ListBoxItem bind:group={comboboxValue} name="medium" value="Electronics"
+							>Electronics</ListBoxItem
+						>
+						<ListBoxItem bind:group={comboboxValue} name="medium" value="Collectibles & Art"
+							>Collectibles & Art</ListBoxItem
+						>
+						<ListBoxItem bind:group={comboboxValue} name="medium" value="Books, Movies & Music"
+							>Books, Movies & Music</ListBoxItem
 						>
 					</ListBox>
 					<div class="arrow bg-surface-100-800-token" />
