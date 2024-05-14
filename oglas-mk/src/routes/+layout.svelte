@@ -132,7 +132,7 @@
 					class="btn variant-filled-primary w-48 justify-between"
 					use:popup={popupCombobox}
 				>
-					<span class="capitalize">{comboboxValue ?? 'Category'}</span>
+					<span style="color: white;" class="capitalize">{comboboxValue ?? 'Category'}</span>
 					<span>↓</span>
 				</button>
 				<div
